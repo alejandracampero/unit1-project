@@ -25,7 +25,7 @@ const flipButton = document.getElementById('flip_btn');
 
 /*------------------------- Event Listeners  -------------------------*/
  dealButton.addEventListener('click', handleDeal);
-// flipButton.addEventListener('click', handleclick );
+ flipButton.addEventListener('click', handleFlip );
 
 /*------------------------- Functions  -------------------------*/
 
@@ -71,6 +71,24 @@ const flipButton = document.getElementById('flip_btn');
 function handleDeal(){
     dealCards()
 }
+
+function handleFlip() {
+    if (player1Stack.length > 0) {
+        player1Flip = player1Stack.splice(0, 1);
+        //console.log(player1Flip)
+        p1flipEl.classList.replace('outline', player1Flip);
+        p1flipEl.classList.add('animated', 'zoomInLeft');
+    }
+    if (player2Stack.length > 0) {
+        player2Flip= player2Stack.splice(0, 1);
+        //console.log(player2Flip)
+        p2flipEl.classList.replace('outline', player2Flip);
+        p2flipEl.classList.add('animated', 'zoomInRight');
+    }
+    
+};
+
+/*------------------------- Render Functions -------------------------*/
 
 function render(){
 //Player 1 Render
