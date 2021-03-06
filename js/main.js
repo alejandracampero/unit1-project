@@ -18,13 +18,13 @@ const p1deckEl = document.getElementById('p1deck');
 const p2deckEl= document.getElementById('p2deck');
 const p1flipEl = document.getElementById('p1flip');
 const p2flipEl = document.getElementById('p2flip');
-const dealButton = document.getElementById('deal-btn');
-const flipButton = document.getElementById('flip-btn');
+const dealButton = document.getElementById('deal_btn');
+const flipButton = document.getElementById('flip_btn');
 
 
 
 /*------------------------- Event Listeners  -------------------------*/
-// dealButton.addEventListener('click', handleDeal);
+ dealButton.addEventListener('click', handleDeal);
 // flipButton.addEventListener('click', handleclick );
 
 /*------------------------- Functions  -------------------------*/
@@ -67,15 +67,22 @@ const flipButton = document.getElementById('flip-btn');
     render()
   }
 
-dealCards()
+
+function handleDeal(){
+    dealCards()
+}
 
 function render(){
 //Player 1 Render
+let cardToRemove1 = this.cardDealt1
   if (player1Stack.length > 0) {
     p1deckEl.classList.remove('outline');
+    p1deckEl.classList.remove(cardToRemove1);
   }
 //Player 2 Render
+let cardToRemove2 = this.cardDealt2
   if (player2Stack.length > 0) {
     p2deckEl.classList.remove('outline');
+    p2deckEl.classList.remove(cardToRemove2);
   }
 }
