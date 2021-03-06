@@ -14,12 +14,12 @@ let player2Flip = [];
 
 /*------------------------- Cached elements  -------------------------*/
 
-// const p1deckEl = document.getElementById('p1deck');
-// const p2deckEl= document.getElementById('p2deck');
-// const p1flipEl = document.getElementById('p1flip');
-// const p2flipEl = document.getElementById('p2flip');
-// const dealButton = document.getElementById('deal-btn');
-// const flipButton = document.getElementById('flip-btn');
+const p1deckEl = document.getElementById('p1deck');
+const p2deckEl= document.getElementById('p2deck');
+const p1flipEl = document.getElementById('p1flip');
+const p2flipEl = document.getElementById('p2flip');
+const dealButton = document.getElementById('deal-btn');
+const flipButton = document.getElementById('flip-btn');
 
 
 
@@ -61,10 +61,21 @@ let player2Flip = [];
     }
     console.log(player1Stack)
     console.log(player2Stack)
+    p1deckEl.classList.add('back-blue', 'animated', 'rotateIn');
+    p2deckEl.classList.add('back-blue', 'animated', 'rotateIn');
+   
+    render()
   }
 
 dealCards()
 
-
-
-
+function render(){
+//Player 1 Render
+  if (player1Stack.length > 0) {
+    p1deckEl.classList.remove('outline');
+  }
+//Player 2 Render
+  if (player2Stack.length > 0) {
+    p2deckEl.classList.remove('outline');
+  }
+}
