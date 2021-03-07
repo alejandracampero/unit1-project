@@ -10,8 +10,6 @@ let player2Stack = [];
 let player1Flip = [];
 let player2Flip = [];
 
-
-
 /*------------------------- Cached elements  -------------------------*/
 
 const p1deckEl = document.getElementById('p1deck');
@@ -25,14 +23,14 @@ const flipButton = document.getElementById('flip_btn');
 
 /*------------------------- Event Listeners  -------------------------*/
  dealButton.addEventListener('click', handleDeal);
- flipButton.addEventListener('click', handleFlip );
+ flipButton.addEventListener('click', handleFlip);
 
 /*------------------------- Functions  -------------------------*/
 
 
   function shuffleCards() {
     let temp = null
-    for (let = idx = cards.length - 1; idx > 0; idx -= 1) {
+    for (let idx = cards.length - 1; idx > 0; idx -= 1) {
         let rndIdx = Math.floor(Math.random() * (idx + 1))
         temp = cards[idx]
         cards[idx] = cards[rndIdx]
@@ -61,11 +59,12 @@ const flipButton = document.getElementById('flip_btn');
     }
     console.log(player1Stack)
     console.log(player2Stack)
+    p1deckEl.classList.remove('outline');
     p1deckEl.classList.add('back-blue', 'animated', 'rotateIn');
+    p2deckEl.classList.remove('outline');
     p2deckEl.classList.add('back-blue', 'animated', 'rotateIn');
    
-    render()
-  }
+}
 
 
 function handleDeal(){
@@ -75,19 +74,18 @@ function handleDeal(){
 function handleFlip() {
     if (player1Stack.length > 0) {
         player1Flip = player1Stack.splice(0, 1);
-        //console.log(player1Flip)
-        p1flipEl.classList.replace('outline', player1Flip);
-        p1flipEl.classList.add('animated', 'zoomInLeft');
+        console.log("Current flipped card for player 1: " +player1Flip)
+        //p1flipEl.classList.replace('outline', player1Flip);
+        //p1flipEl.classList.add('animated', 'zoomInLeft');
     }
     if (player2Stack.length > 0) {
         player2Flip= player2Stack.splice(0, 1);
-        //console.log(player2Flip)
-        p2flipEl.classList.replace('outline', player2Flip);
-        p2flipEl.classList.add('animated', 'zoomInRight');
+        console.log("Current flipped card for player 2: " + player2Flip)
+        //p2flipEl.classList.replace('outline', player2Flip);
+        //p2flipEl.classList.add('animated', 'zoomInRight');
     }
-    compareFlipped()
-    render()
-
+    render(player1Flip, player2Flip)
+    //compareFlipped()
 };
 
 function compareFlipped() {
@@ -95,6 +93,7 @@ function compareFlipped() {
         player1Stack.push(`${player1Flip}`);
         player1Stack.push(`${player2Flip}`);
         player2Stack.splice(player2Stack.length, 1);
+        winHand = 1;
     } else if (covertCardToNumber(player1Flip) < covertCardToNumber(player2Flip)) {
         player2Stack.push(`${player2Flip}`);
         player2Stack.push(`${player1Flip}`);
@@ -102,7 +101,9 @@ function compareFlipped() {
     }
     console.log(`Player 1 has ${player1Stack.length} cards` )
     console.log(`Player 2 has ${player2Stack.length} cards`)
+    //render()
 };
+
 
 //CALLBACK function meant to translate the card description to a number in order to compare
 function covertCardToNumber(card) {
@@ -138,17 +139,29 @@ function covertCardToNumber(card) {
 
 /*------------------------- Render Functions -------------------------*/
 
-function render(){
+function render(player1Flip, player2Flip){
 //Player 1 Render
-let cardToRemove1 = this.cardDealt1
-  if (player1Stack.length > 0) {
-    p1deckEl.classList.remove('outline');
-    p1deckEl.classList.remove(cardToRemove1);
+let cardToRemove1, cardToRemove2;
+  if(player1Flip.length === 1){
+    p1flipEl.classList.remove('outline')
   }
+  if (player1Flip.length  > 1) {
+    p1flipEl.classList.remove(cardToRemove1)
+  }
+   // Store the card to remove next round as a variable
+  cardToRemove1 = `${player1Flip}`
+  p1flipEl.classList.add(`${player1Flip}`)
+  
 //Player 2 Render
-let cardToRemove2 = this.cardDealt2
-  if (player2Stack.length > 0) {
-    p2deckEl.classList.remove('outline');
-    p2deckEl.classList.remove(cardToRemove2);
+if(player2Flip.length === 1){
+    p2flipEl.classList.remove('outline')
   }
+  if (player1Flip.length  > 1) {
+    p2flipEl.classList.remove(cardToRemove2)
+  }
+   // Store the card to remove next round as a variable
+  cardToRemove2 = `${player2Flip}`
+  p2flipEl.classList.add(`${player2Flip}`)
+ 
 }
+
