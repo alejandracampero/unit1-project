@@ -8,7 +8,12 @@ const cards = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d0
 let player1Stack = [];
 let player2Stack = [];
 let player1Flip = [];
+let currP1Flip;
 let player2Flip = [];
+let currP2Flip;
+
+
+
 
 /*------------------------- Cached elements  -------------------------*/
 
@@ -73,19 +78,20 @@ function handleDeal(){
 
 function handleFlip() {
     if (player1Stack.length > 0) {
-        player1Flip = player1Stack.splice(0, 1);
-        console.log("Current flipped card for player 1: " +player1Flip)
-        //p1flipEl.classList.replace('outline', player1Flip);
-        //p1flipEl.classList.add('animated', 'zoomInLeft');
+        currP1Flip = player1Stack.splice(0, 1);
+        //console.log("Current flipped card for player 1: " + player1Flip)
+        player1Flip.push(currP1Flip);
+    
     }
     if (player2Stack.length > 0) {
-        player2Flip= player2Stack.splice(0, 1);
-        console.log("Current flipped card for player 2: " + player2Flip)
-        //p2flipEl.classList.replace('outline', player2Flip);
-        //p2flipEl.classList.add('animated', 'zoomInRight');
+        currP2Flip = player2Stack.splice(0, 1);
+        //console.log("Current flipped card for player 2: " + player2Flip)
+        player2Flip.push(currP2Flip)
+      
     }
-    render(player1Flip, player2Flip)
-    //compareFlipped()
+    //render(currP1Flip, currP2Flip)
+
+    compareFlipped()
 };
 
 function compareFlipped() {
@@ -93,15 +99,20 @@ function compareFlipped() {
         player1Stack.push(`${player1Flip}`);
         player1Stack.push(`${player2Flip}`);
         player2Stack.splice(player2Stack.length, 1);
-        winHand = 1;
+
     } else if (covertCardToNumber(player1Flip) < covertCardToNumber(player2Flip)) {
         player2Stack.push(`${player2Flip}`);
         player2Stack.push(`${player1Flip}`);
         player1Stack.splice(player1Stack.length, 1);
+    }else{
+        //war()
     }
+
     console.log(`Player 1 has ${player1Stack.length} cards` )
+    //console.log(`Player 1 has ${player1Stack} cards` )
     console.log(`Player 2 has ${player2Stack.length} cards`)
-    //render()
+    //console.log(`Player 2 has ${player2Stack} cards`)
+    render(currP1Flip, currP2Flip)
 };
 
 
@@ -138,30 +149,28 @@ function covertCardToNumber(card) {
 
 
 /*------------------------- Render Functions -------------------------*/
-
-function render(player1Flip, player2Flip){
-//Player 1 Render
-let cardToRemove1, cardToRemove2;
+function render(currP1Flip, currP2Flip){
+  //Player 1 Render
   if(player1Flip.length === 1){
     p1flipEl.classList.remove('outline')
   }
   if (player1Flip.length  > 1) {
-    p1flipEl.classList.remove(cardToRemove1)
+    p1flipEl.classList.remove(player1Flip[player1Flip.length - 2])
   }
-   // Store the card to remove next round as a variable
-  cardToRemove1 = `${player1Flip}`
-  p1flipEl.classList.add(`${player1Flip}`)
+  p1flipEl.classList.add(currP1Flip)
+  console.log(p1flipEl)
   
 //Player 2 Render
-if(player2Flip.length === 1){
+ if(player2Flip.length === 1){
     p2flipEl.classList.remove('outline')
   }
+  cardToRemove2 = player2Flip
   if (player1Flip.length  > 1) {
-    p2flipEl.classList.remove(cardToRemove2)
+    p2flipEl.classList.remove(player2Flip[player2Flip.length - 2])
   }
-   // Store the card to remove next round as a variable
-  cardToRemove2 = `${player2Flip}`
-  p2flipEl.classList.add(`${player2Flip}`)
- 
+  p2flipEl.classList.add(currP2Flip)
+  console.log(p2flipEl)
 }
+
+
 
