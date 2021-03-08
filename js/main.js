@@ -79,13 +79,11 @@ function handleDeal(){
 function handleFlip() {
     if (player1Stack.length > 0) {
         currP1Flip = player1Stack.splice(0, 1);
-        //console.log("Current flipped card for player 1: " + player1Flip)
         player1Flip.push(currP1Flip);
     
     }
     if (player2Stack.length > 0) {
         currP2Flip = player2Stack.splice(0, 1);
-        //console.log("Current flipped card for player 2: " + player2Flip)
         player2Flip.push(currP2Flip)
       
     }
@@ -95,23 +93,21 @@ function handleFlip() {
 };
 
 function compareFlipped() {
-    if (covertCardToNumber(player1Flip) > covertCardToNumber(player2Flip)) {
-        player1Stack.push(`${player1Flip}`);
-        player1Stack.push(`${player2Flip}`);
+    if (covertCardToNumber(currP1Flip) > covertCardToNumber(currP2Flip)) {
+        player1Stack.push(`${currP1Flip}`);
+        player1Stack.push(`${currP2Flip}`);
         player2Stack.splice(player2Stack.length, 1);
 
-    } else if (covertCardToNumber(player1Flip) < covertCardToNumber(player2Flip)) {
-        player2Stack.push(`${player2Flip}`);
-        player2Stack.push(`${player1Flip}`);
+    } else if (covertCardToNumber(currP1Flip) < covertCardToNumber(currP2Flip)) {
+        player2Stack.push(`${currP2Flip}`);
+        player2Stack.push(`${currP1Flip}`);
         player1Stack.splice(player1Stack.length, 1);
     }else{
         //war()
     }
 
     console.log(`Player 1 has ${player1Stack.length} cards` )
-    //console.log(`Player 1 has ${player1Stack} cards` )
     console.log(`Player 2 has ${player2Stack.length} cards`)
-    //console.log(`Player 2 has ${player2Stack} cards`)
     render(currP1Flip, currP2Flip)
 };
 
@@ -158,10 +154,9 @@ function render(currP1Flip, currP2Flip){
     p1flipEl.classList.remove(player1Flip[player1Flip.length - 2])
   }
   p1flipEl.classList.add(currP1Flip)
-  console.log(p1flipEl)
   
 //Player 2 Render
- if(player2Flip.length === 1){
+  if(player2Flip.length === 1){
     p2flipEl.classList.remove('outline')
   }
   cardToRemove2 = player2Flip
@@ -169,7 +164,6 @@ function render(currP1Flip, currP2Flip){
     p2flipEl.classList.remove(player2Flip[player2Flip.length - 2])
   }
   p2flipEl.classList.add(currP2Flip)
-  console.log(p2flipEl)
 }
 
 
