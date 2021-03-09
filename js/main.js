@@ -16,10 +16,6 @@ let p2War;
 let p1iDeclareWar=[];
 let p2iDeclareWar=[];
 let winner;
-
-
-
-
 /*------------------------- Cached elements  -------------------------*/
 
 const p1deckEl = document.getElementById('p1deck');
@@ -53,7 +49,6 @@ const gameStatusEl = document.getElementById('gamestatus');
     console.log (cards)
     return cards
   }
-
 
   function dealCards(){
     gameStatusEl.innerText = 'Flip The Cards!'
@@ -127,8 +122,13 @@ function compareFlipped() {
         clearDisplay()
     }else{
         war()
+        setTimeout(function(){
+         clearWarDisplay()
+        },6000)
     }
-
+    setTimeout (function (){
+        flipButton.style.display = 'block';
+       }, 3500)
     console.log(`Player 1 has ${player1Stack.length} cards` )
     console.log(`Player 2 has ${player2Stack.length} cards`)
     render(currP1Flip, currP2Flip)
@@ -201,8 +201,72 @@ function clearDisplay(){
         p2flipEl.classList.add('animated', 'slideOutRight')
         },2000)
     }
+    flipButton.style.display = 'none'
     render(currP1Flip, currP2Flip)
 
+}
+
+function clearWarDisplay(){
+  if(covertCardToNumber(p1War) > covertCardToNumber(p2War)){
+    setTimeout (function(){
+        p2flipEl.classList.add('animated', 'slideOutLeft')
+    },1000)
+    setTimeout(function(){
+        p2iDeclareWarEl.classList.add('animated', 'slideOutLeft')
+    },2000)
+    setTimeout (function(){
+        p2warFlipEl.classList.add('animated', 'slideOutLeft')
+    },3000)
+    setTimeout (function(){
+        p1warFlipEl.classList.add('animated', 'slideOutLeft')
+    },4000)
+    setTimeout(function(){
+        p1iDeclareWarEl.classList.add('animated', 'slideOutLeft')
+    },5000)
+    setTimeout (function(){
+       p1flipEl.classList.add('animated', 'slideOutLeft')
+    },6000)
+    setTimeout(function(){
+        
+        p2iDeclareWarEl.style.display = 'none'
+        p2warFlipEl.style.display = 'none'
+        p1warFlipEl.style.display = 'none'
+        p1iDeclareWarEl.style.display = 'none'
+       
+
+    },7000)
+  }
+  if(covertCardToNumber(p1War) < covertCardToNumber(p2War)){
+    setTimeout (function(){
+      p1flipEl.classList.add('animated', 'slideOutRight')
+    },1000)
+    setTimeout(function(){
+        p1iDeclareWarEl.classList.add('animated', 'slideOutRight')
+    },2000)
+    setTimeout (function(){
+     p1warFlipEl.classList.add('animated', 'slideOutRight')
+    },3000)
+    setTimeout (function(){
+      p2warFlipEl.classList.add('animated', 'slideOutRight')
+    },4000)
+    setTimeout(function(){
+      p2iDeclareWarEl.classList.add('animated', 'slideOutRight')
+    },5000) 
+    setTimeout (function(){
+      p2flipEl.classList.add('animated', 'slideOutRight')
+    },6000)  
+    setTimeout(function(){
+        
+        p2iDeclareWarEl.style.display = 'none'
+        p2warFlipEl.style.display = 'none'
+        p1warFlipEl.style.display = 'none'
+        p1iDeclareWarEl.style.display = 'none'
+        
+
+    },7000)
+  }
+  flipButton.style.display = 'none'
+  render(currP1Flip, currP2Flip)
 }
 
 
@@ -238,7 +302,7 @@ function compareWarCards() {
     }
     setTimeout (function (){
      flipButton.style.display = 'block';
-    }, 5000);
+    }, 11000);
 };
 
 
@@ -300,19 +364,18 @@ function render(currP1Flip, currP2Flip){
 }
 /*------------------------- Display Functions -------------------------*/
 function initDisplay(){
-    p1warFlipEl.style.display = 'none'
-    p2warFlipEl.style.display = 'none'
-    p1iDeclareWarEl.style.display = 'none'
-    p2iDeclareWarEl.style.display = 'none'
-  
-  }
+  p1warFlipEl.style.display = 'none'
+  p2warFlipEl.style.display = 'none'
+  p1iDeclareWarEl.style.display = 'none'
+  p2iDeclareWarEl.style.display = 'none'
+}
 
-  function warDisplay(){
-    flipButton.style.display = 'none'
-    p1warFlipEl.style.display = 'block'
-    p2warFlipEl.style.display = 'block'
-    p1iDeclareWarEl.style.display = 'block'
-    p2iDeclareWarEl.style.display = 'block'
+function warDisplay(){
+  flipButton.style.display = 'none'
+  p1warFlipEl.style.display = 'block'
+  p2warFlipEl.style.display = 'block'
+  p1iDeclareWarEl.style.display = 'block'
+  p2iDeclareWarEl.style.display = 'block'
 }
 
 /*------------------------- Functions called upon loading page -------------------------*/
