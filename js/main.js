@@ -52,6 +52,9 @@ const gameStatusEl = document.getElementById('gamestatus');
   function dealCards(){
     gameStatusEl.innerText = 'Flip The Cards!'
     dealButton.style.display = 'none'
+    setTimeout(function(){
+     flipButton.style.display = 'block'  
+    },1500)
     shuffleCards();
     if (cards.length > 0) {
         for (let i = 0; i < 26; i++) {
@@ -131,7 +134,7 @@ function compareFlipped() {
         },3000)
         setTimeout (function (){
           flipButton.style.display = 'block';
-        }, 11000)
+        }, 15000)
         renderWar(p1War,p2War)
     }
     console.log(`Player 1 has ${player1Stack.length} cards` )
@@ -384,6 +387,7 @@ function initDisplay(){
   p2warFlipEl.style.display = 'none'
   p1iDeclareWarEl.style.display = 'none'
   p2iDeclareWarEl.style.display = 'none'
+  flipButton.style.display = 'none'
 }
 
 function warDisplay(){
