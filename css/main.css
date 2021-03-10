@@ -23,6 +23,12 @@ h1{
     height: 7vh;
 }
 
+h2{
+  display: flex;
+  color: #c3c3c3;
+  justify-content: center;
+}
+
 
 
 @charset "UTF-8";

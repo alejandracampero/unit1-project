@@ -29,7 +29,8 @@ const p2warFlipEl = document.getElementById('p2warflip');
 const p1iDeclareWarEl = document.getElementById('p1IDW');
 const p2iDeclareWarEl = document.getElementById('p2IDW');
 const gameStatusEl = document.getElementById('gamestatus');
-
+const counter1 = document.getElementById('counter1');
+const counter2 = document.getElementById('counter2');
 
 /*------------------------- Event Listeners  -------------------------*/
  dealButton.addEventListener('click', dealCards);
@@ -47,6 +48,7 @@ const gameStatusEl = document.getElementById('gamestatus');
         cards[rndIdx] = temp
     }
     return cards
+
   }
 
   function dealCards(){
@@ -74,17 +76,23 @@ const gameStatusEl = document.getElementById('gamestatus');
     p1deckEl.classList.add('back-blue', 'animated', 'rotateIn');
     p2deckEl.classList.remove('outline');
     p2deckEl.classList.add('back-blue', 'animated', 'rotateIn');
-   
+
+    counter1.textContent =`Player 1 has: ${player1Stack.length} cards` 
+    counter2.textContent =`Player 2 has: ${player2Stack.length} cards` 
 }
 
 function handleFlip() {
     if (player1Stack.length > 0) {
         currP1Flip = player1Stack.splice(0, 1);
-        player1Flip.push(currP1Flip);  
+        player1Flip.push(currP1Flip); 
+        p1flipEl.classList.replace('outline', currP1Flip)
+        p2flipEl.classList.replace('outline', currP2Flip) 
     }
     if (player2Stack.length > 0) {
         currP2Flip = player2Stack.splice(0, 1);
         player2Flip.push(currP2Flip)
+        p1flipEl.classList.replace('outline', currP1Flip)
+        p2flipEl.classList.replace('outline', currP2Flip)
     }
     if(winner = 1){
         p1flipEl.classList.replace('slideOutLeft', currP1Flip)
@@ -139,6 +147,8 @@ function compareFlipped() {
     }
     console.log(`Player 1 has ${player1Stack.length} cards` )
     console.log(`Player 2 has ${player2Stack.length} cards`)
+    counter1.textContent =`Player 1 has: ${player1Stack.length} cards` 
+    counter2.textContent =`Player 2 has: ${player2Stack.length} cards` 
     //render(currP1Flip, currP2Flip)
 };
 
@@ -161,6 +171,9 @@ function clearDisplay(){
         },2000)
     }
     render(currP1Flip, currP2Flip)
+    getWinner()
+    counter1.textContent =`Player 1 has: ${player1Stack.length} cards` 
+    counter2.textContent =`Player 2 has: ${player2Stack.length} cards` 
 }
 
 function war() {
@@ -196,8 +209,6 @@ function war() {
         console.log("player 2  war " + p2War)
     }
    compareWarCards();
-   console.log("player 1 stack after war : " + player1Stack.length)
-   console.log("player 2 stack after war : " + player2Stack.length)
 };
 
 function clearWarDisplay(){
@@ -221,6 +232,8 @@ function clearWarDisplay(){
        p1flipEl.classList.add('animated', 'slideOutLeft')
     },7000)
     setTimeout(function(){
+        p1flipEl.classList.replace(`${currP1Flip}`,'outline')
+        p2flipEl.classList.replace(`${currP2Flip}`,'outline')
         p1flipEl.classList.remove('animated','fadeInLeft','slideOutLeft')
         p1flipEl.classList.replace(`${p1iDeclareWar}`, 'outline')
         p1iDeclareWarEl.classList.remove('animated','slideInLeft','slideOutLeft')
@@ -266,6 +279,8 @@ function clearWarDisplay(){
     },7000) 
 
     setTimeout(function(){
+        p1flipEl.classList.replace(`${currP1Flip}`,'outline')
+        p2flipEl.classList.replace(`${currP2Flip}`,'outline')
         p1flipEl.classList.remove('animated','fadeInLeft','slideOutRight')
         p1flipEl.classList.replace(`${p1iDeclareWar}`, 'outline')
         p1iDeclareWarEl.classList.remove('animated','slideInLeft','slideOutRight')
@@ -306,6 +321,8 @@ function compareWarCards() {
         //winner = 1;
         setTimeout(function(){
           gameStatusEl.innerText = "Player 1 Wins This WAR!"
+          counter1.textContent =`Player 1 has: ${player1Stack.length} cards` 
+          counter2.textContent =`Player 2 has: ${player2Stack.length} cards` 
         },5000)
         
     } else if (covertCardToNumber(p1War) < covertCardToNumber(p2War)) {
@@ -318,12 +335,15 @@ function compareWarCards() {
         //winner = 2;
         setTimeout(function(){
             gameStatusEl.innerText = "Player 2 Wins This WAR!"
+            counter1.textContent =`Player 1 has: ${player1Stack.length} cards` 
+            counter2.textContent =`Player 2 has: ${player2Stack.length} cards` 
         },5000)
         
     } else {
         initDisplay()
         console.log("War for the second time");
     }
+    getWinner()
     // setTimeout (function (){
     //  flipButton.style.display = 'block';
     // }, 11000);
@@ -335,6 +355,7 @@ function getWinner(){
     }
     if (player2Stack.length === 52){
         gameStatusEl.innerText = 'Player 2 Wins!'
+  
     }
 }
 
@@ -388,6 +409,8 @@ function initDisplay(){
   p1iDeclareWarEl.style.display = 'none'
   p2iDeclareWarEl.style.display = 'none'
   flipButton.style.display = 'none'
+  counter1.innerText = '' 
+  counter2.innerText = '' 
 }
 
 function warDisplay(){
