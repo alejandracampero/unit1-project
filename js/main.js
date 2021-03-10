@@ -351,7 +351,7 @@ function render(currP1Flip, currP2Flip){
   if(player2Flip.length === 1){
     p2flipEl.classList.remove('outline')
   }
-  cardToRemove2 = player2Flip
+
   if (player1Flip.length  > 1) {
     p2flipEl.classList.remove(player2Flip[player2Flip.length - 2])
   }
@@ -361,18 +361,20 @@ function render(currP1Flip, currP2Flip){
 
 function renderWar(p1War,p2War){
     if(p1War){
-        p1flipEl.classList.remove(p1War)
+        //p1flipEl.classList.remove(p1War)
         p1flipEl.classList.remove('outline')
-        //p1flipEl.classList.remove(player1Flip[player1Flip.length - 1])
-        //p1flipEl.classList.remove(player1Flip[player1Flip.length - 2])
+      }
+      if (player1Flip.length  > 1) {
+        p1flipEl.classList.remove(player1Flip[player1Flip.length - 2])
       }
 
     //Player 2 Render
       if(p2War){
-        p2flipEl.classList.remove(p2War)
+        //p2flipEl.classList.remove(p2War)
         p2flipEl.classList.remove('outline')
-        //p2flipEl.classList.remove(player2Flip[player2Flip.length - 1])
-        //p2flipEl.classList.remove(player2Flip[player2Flip.length - 2])
+      }
+      if (player1Flip.length  > 1) {
+        p2flipEl.classList.remove(player2Flip[player2Flip.length - 2])
       }
     }
 
