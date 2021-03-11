@@ -31,10 +31,12 @@ const p2iDeclareWarEl = document.getElementById('p2IDW');
 const gameStatusEl = document.getElementById('gamestatus');
 const counter1 = document.getElementById('counter1');
 const counter2 = document.getElementById('counter2');
+const resetButton = document.getElementById('reset_btn')
 
 /*------------------------- Event Listeners  -------------------------*/
  dealButton.addEventListener('click', dealCards);
  flipButton.addEventListener('click', handleFlip);
+ resetButton.addEventListener('click', initDisplay);
 
 /*------------------------- Functions  -------------------------*/
 
@@ -328,8 +330,10 @@ function compareWarCards() {
         },5000)
         
     } else {
-        initDisplay()
-        console.log("War for the second time");
+      setTimeout(function(){
+        gameStatusEl.innerText = "WAR FOR THE SECOND TIME, NOBODY WINS!"
+        resetButton.style.display = "block"
+      },2000 )
     }
 };
 
@@ -401,6 +405,7 @@ function initDisplay(){
   flipButton.style.display = 'none'
   counter1.innerText = '' 
   counter2.innerText = '' 
+  resetButton.style.display = "none"
 }
 
 function warDisplay(){
@@ -409,6 +414,7 @@ function warDisplay(){
   p2warFlipEl.style.display = 'block'
   p1iDeclareWarEl.style.display = 'block'
   p2iDeclareWarEl.style.display = 'block'
+  resetButton.style.display = "none"
 }
 /*------------------------- Helper Functions -------------------------*/
 //CALLBACK function meant to translate the card description to a number in order to compare
