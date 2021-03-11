@@ -7,11 +7,11 @@ h1{
     display: flex;
     color: #c3c3c3;
     justify-content: center;
-    margin: 5%;
+    margin: 3%;
     
 }
 .game {
-   margin: 10% 0 0 0;
+   margin: 7% 0 0 0;
    display: flex;
    justify-content: center;
    align-items: center;
