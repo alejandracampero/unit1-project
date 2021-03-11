@@ -1,6 +1,10 @@
 #### ***Developer: Alejandra Lopez*** 
 
 ***
+### WAR CARD GAME
+
+***
+
 
 ### ***INSPIRATION***
 
@@ -14,7 +18,7 @@
 
 ***PSEUDOCODE***
 
-![alt text](https://i.imgur.com/66xglxR.png)
+![alt text](https://i.imgur.com/O4BMbyS.png)
 
 ***
 
@@ -32,7 +36,7 @@ The deckis first shuffled and then is divided evenly, with each player receiving
 Each player flips a card at the same time and the player with the higher card takes both cards and puts them, face down, on the bottom of his stack.
 If the cards are the same rank, it is War!
 
-***WAR**
+***WAR***
 
 Each player turns up three cards face down and one card face up. The player with the higher cards takes both piles and the cards flipped. If the turned-up cards are again the same rank it is war again!
 
