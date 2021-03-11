@@ -36,7 +36,7 @@ const resetButton = document.getElementById('reset_btn')
 /*------------------------- Event Listeners  -------------------------*/
  dealButton.addEventListener('click', dealCards);
  flipButton.addEventListener('click', handleFlip);
- resetButton.addEventListener('click', initDisplay);
+ resetButton.addEventListener('click', reset);
 
 /*------------------------- Functions  -------------------------*/
 
@@ -168,11 +168,20 @@ function clearDisplay(){
         p2flipEl.classList.add('animated', 'slideOutRight')
         },2000)
     }
-    render(currP1Flip, currP2Flip)
-    getWinner()
-    counter1.textContent =`Player 1 has: ${player1Stack.length} cards` 
-    counter2.textContent =`Player 2 has: ${player2Stack.length} cards`
-    getWinner()
+    
+      counter1.textContent =`Player 1 has: ${player1Stack.length} cards` 
+      counter2.textContent =`Player 2 has: ${player2Stack.length} cards`
+      setTimeout(function(){
+        gameStatusEl.innerText = 'Flip The Cards!'
+       },3500)
+
+      render(currP1Flip, currP2Flip)
+
+      setTimeout(function(){
+        getWinner()
+      }, 3505)
+     
+    
 }
 
 function war() {
@@ -243,14 +252,16 @@ function clearWarDisplay(){
         p2flipEl.classList.replace(`${p2iDeclareWar}`, 'outline')
 
     },10000)
-
-
     setTimeout(function(){
         p2iDeclareWarEl.style.display = 'none'
         p2warFlipEl.style.display = 'none'
         p1warFlipEl.style.display = 'none'
         p1iDeclareWarEl.style.display = 'none'
+
     },8000)
+    setTimeout(function(){
+      getWinner()
+    }, 11000)
   }
 
   if(covertCardToNumber(p1War) < covertCardToNumber(p2War)){
@@ -297,6 +308,10 @@ function clearWarDisplay(){
         p1warFlipEl.style.display = 'none'
         p1iDeclareWarEl.style.display = 'none' 
     },8000)
+
+    setTimeout(function(){
+      getWinner()
+    }, 11000)
   }
 }
 
@@ -333,25 +348,36 @@ function compareWarCards() {
       setTimeout(function(){
         gameStatusEl.innerText = "WAR FOR THE SECOND TIME, NOBODY WINS!"
         resetButton.style.display = "block"
-      },2000 )
+        flipButton.style.display = "none"
+        counter1.style.display = "none"
+        counter2.style.display = "none"
+      },3000 )
     }
+    setTimeout(function(){
+      gameStatusEl.innerText = 'Flip The Cards!'
+     },14000)
 };
 
 function getWinner(){
     if (player1Stack.length === 52){
-        gameStatusEl.innerText = 'Player 1 has 52 cards!'
-        gameStatusEl.style.color= 'green'
-        counter1.innerText = 'Player 1 wins!'
+        gameStatusEl.innerText='Player 1 has all the cards!'
+        gameStatusEl.style.color = 'green'
+        counter1.innerText = 'Player 1 Wins!'
         counter1.style.color= 'green'
         counter2.style.display='none'
+        flipButton.style.display='none'
+        resetButton.style.display='none'
+        p2deckEl.style.display='none'
     }
     if (player2Stack.length === 52){
-      gameStatusEl.innerText = 'Player 2 has 52 cards!'
-      gameStatusEl.style.color= 'green'
-      counter1.innerText = 'Player 2 wins!'
+      gameStatusEl.innerText='Player 2 has all the cards!'
+      gameStatusEl.style.color = 'green'
+      counter1.innerText = ' Player 2 Wins!'
       counter1.style.color= 'green'
       counter2.style.display='none'
-  
+      flipButton.style.display='none'
+      resetButton.style.display='none'
+      p1deckEl.style.display='none'
     }
 }
 
@@ -406,6 +432,23 @@ function initDisplay(){
   counter1.innerText = '' 
   counter2.innerText = '' 
   resetButton.style.display = "none"
+}
+
+function reset(){
+  gameStatusEl.innerText = "Please refresh the page"
+  p1warFlipEl.style.display = 'none'
+  p2warFlipEl.style.display = 'none'
+  p1iDeclareWarEl.style.display = 'none'
+  p2iDeclareWarEl.style.display = 'none'
+  p1flipEl.style.display = 'none'
+  p2flipEl.style.display = 'none'
+  flipButton.style.display ='none'
+  counter1.innerText = '' 
+  counter2.innerText = '' 
+  resetButton.style.display = "none"
+  p1deckEl.style.display = "none"
+  p2deckEl.style.display = "none"
+  dealButton.style.display = "none"
 }
 
 function warDisplay(){
