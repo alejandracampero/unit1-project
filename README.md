@@ -6,7 +6,11 @@
 ***
 
 
-### ***INSPIRATION***
+### ***INSPIRATION AND OBJECTIVE***
+
+Build a game that is targeted for all ages. Implement a simple yet elegant design.
+
+***As a person with a previus long train commute, I used to entertain myself with games like this one.***
 
 ***
 
@@ -62,21 +66,21 @@ The project can be played and viewed [here](http://unit1-project.surge.sh/).
 
 ### Upon Loading:
 
-![alt text](https://i.imgur.com/7nPrbBI.png)
+![alt text](https://i.imgur.com/w2cIe44.png)
 
 ### Play:
 
-![alt text](https://i.imgur.com/wu2tMZT.png)
+![alt text](https://i.imgur.com/nXBlRhi.png)
 
 ### War:
 
-![alt text](https://i.imgur.com/MSNGtY1.png)
+![alt text](https://i.imgur.com/K8qoSQB.png)
 
 ***
 
 ### ***FUTURE UPDATES***
 
-- [ ] Style buttons using bootstrap.
+- [x] ~~Style buttons using bootstrap.~~
 - [ ] Mobile responsiveness.
 - [ ] Add sounds.
 
@@ -86,4 +90,6 @@ The project can be played and viewed [here](http://unit1-project.surge.sh/).
 
 ##### Animations: [Animate.css](https://daneden.github.io/animate.css/)
 ##### Game Background: [raresantorini.com](https://raresantorini.com/wp-content/uploads/2018/06/black-table-background-1.jpg)
+##### Buttons Styling: [getbootstrap.com](https://getbootstrap.com/)
+##### Font: [Google Fonts](https://fonts.google.com/)
 

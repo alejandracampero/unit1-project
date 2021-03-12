@@ -112,7 +112,9 @@ function compareFlipped() {
         player1Stack.push(`${currP2Flip}`);
         player2Stack.splice(player2Stack.length, 1);
         winner = 1;
-        gameStatusEl.innerText = "Player 1 Wins This Round!"
+        setTimeout(function(){
+          gameStatusEl.innerText = "Player 1 Wins This Round!"
+        },1000)
         clearDisplay()
         setTimeout (function (){
           flipButton.style.display = 'block';
@@ -124,7 +126,9 @@ function compareFlipped() {
         player2Stack.push(`${currP1Flip}`);
         player1Stack.splice(player1Stack.length, 1);
         winner = 2;
-        gameStatusEl.innerText = "Player 2 Wins This Round!"
+        setTimeout(function(){
+          gameStatusEl.innerText = "Player 2 Wins This Round!"
+        },1000)
         clearDisplay()
         setTimeout (function (){
           flipButton.style.display = 'block';
