@@ -219,6 +219,49 @@ function war() {
    compareWarCards();
 };
 
+function compareWarCards() {
+  if (covertCardToNumber(p1War) > covertCardToNumber(p2War)) {
+      player1Stack.push(`${p1iDeclareWar[0]}`, `${p1iDeclareWar[1]}`, `${p1iDeclareWar[2]}`);
+      player1Stack.push(`${player1Flip[0]}`);
+      player1Stack.push(`${p2iDeclareWar[0]}`, `${p2iDeclareWar[1]}`, `${p2iDeclareWar[2]}`);
+      player1Stack.push(`${player2Flip[0]}`);
+      player1Stack.push(`${p2War}`);
+      player2Stack.splice(player2Stack.length - 1, 1);
+      setTimeout(function(){
+        gameStatusEl.innerText = "Player 1 Wins This WAR!"
+        counter1.textContent =`Player 1 has: ${player1Stack.length} cards` 
+        counter2.textContent =`Player 2 has: ${player2Stack.length} cards` 
+        getWinner()
+      },5000)
+      
+  } else if (covertCardToNumber(p1War) < covertCardToNumber(p2War)) {
+      player2Stack.push(`${p2iDeclareWar[0]}`, `${p2iDeclareWar[1]}`, `${p2iDeclareWar[2]}`);
+      player2Stack.push(`${player2Flip[0]}`);
+      player2Stack.push(`${p1iDeclareWar[0]}`, `${p1iDeclareWar[1]}`, `${p1iDeclareWar[2]}`);
+      player2Stack.push(`${player1Flip[0]}`);
+      player2Stack.push(p1War);
+      player1Stack.splice(player1Stack.length - 1, 1);
+      setTimeout(function(){
+          gameStatusEl.innerText = "Player 2 Wins This WAR!"
+          counter1.textContent =`Player 1 has: ${player1Stack.length} cards` 
+          counter2.textContent =`Player 2 has: ${player2Stack.length} cards` 
+          getWinner()
+      },5000)
+      
+  } else {
+    setTimeout(function(){
+      gameStatusEl.innerText = "WAR FOR THE SECOND TIME, NOBODY WINS!"
+      resetButton.style.display = "block"
+      flipButton.style.display = "none"
+      counter1.style.display = "none"
+      counter2.style.display = "none"
+    },3000 )
+  }
+  setTimeout(function(){
+    gameStatusEl.innerText = 'Flip The Cards!'
+   },14000)
+};
+
 function clearWarDisplay(){
   if(covertCardToNumber(p1War) > covertCardToNumber(p2War)){
     setTimeout (function(){
@@ -319,48 +362,7 @@ function clearWarDisplay(){
   }
 }
 
-function compareWarCards() {
-    if (covertCardToNumber(p1War) > covertCardToNumber(p2War)) {
-        player1Stack.push(`${p1iDeclareWar[0]}`, `${p1iDeclareWar[1]}`, `${p1iDeclareWar[2]}`);
-        player1Stack.push(`${player1Flip[0]}`);
-        player1Stack.push(`${p2iDeclareWar[0]}`, `${p2iDeclareWar[1]}`, `${p2iDeclareWar[2]}`);
-        player1Stack.push(`${player2Flip[0]}`);
-        player1Stack.push(`${p2War}`);
-        player2Stack.splice(player2Stack.length - 1, 1);
-        setTimeout(function(){
-          gameStatusEl.innerText = "Player 1 Wins This WAR!"
-          counter1.textContent =`Player 1 has: ${player1Stack.length} cards` 
-          counter2.textContent =`Player 2 has: ${player2Stack.length} cards` 
-          getWinner()
-        },5000)
-        
-    } else if (covertCardToNumber(p1War) < covertCardToNumber(p2War)) {
-        player2Stack.push(`${p2iDeclareWar[0]}`, `${p2iDeclareWar[1]}`, `${p2iDeclareWar[2]}`);
-        player2Stack.push(`${player2Flip[0]}`);
-        player2Stack.push(`${p1iDeclareWar[0]}`, `${p1iDeclareWar[1]}`, `${p1iDeclareWar[2]}`);
-        player2Stack.push(`${player1Flip[0]}`);
-        player2Stack.push(p1War);
-        player1Stack.splice(player1Stack.length - 1, 1);
-        setTimeout(function(){
-            gameStatusEl.innerText = "Player 2 Wins This WAR!"
-            counter1.textContent =`Player 1 has: ${player1Stack.length} cards` 
-            counter2.textContent =`Player 2 has: ${player2Stack.length} cards` 
-            getWinner()
-        },5000)
-        
-    } else {
-      setTimeout(function(){
-        gameStatusEl.innerText = "WAR FOR THE SECOND TIME, NOBODY WINS!"
-        resetButton.style.display = "block"
-        flipButton.style.display = "none"
-        counter1.style.display = "none"
-        counter2.style.display = "none"
-      },3000 )
-    }
-    setTimeout(function(){
-      gameStatusEl.innerText = 'Flip The Cards!'
-     },14000)
-};
+
 
 function getWinner(){
     if (player1Stack.length === 52){
