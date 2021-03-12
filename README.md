@@ -10,7 +10,7 @@
 
 Build a game that is targeted for all ages. Implement a simple yet elegant design.
 
-***As a person with a previus long train commute, I used to entertain myself with games like this one.***
+***As a person with previous daily lengthy commutes, I used to entertain myself with games such as this one.***
 
 ***
 
@@ -29,20 +29,21 @@ Build a game that is targeted for all ages. Implement a simple yet elegant desig
 ### ***DESCRIPTION***
 
 ***OBJECTIVE***
-"War" The card game's prime objective is to win all 52 cards!
+"War" the card game's prime objective is to win all 52 cards!
 
 ***THE DEAL***
 
-The deckis first shuffled and then is divided evenly, with each player receiving 26 cards.
+The deck is shuffled and then divided evenly between 2 players, with each player receiving 26 cards.
 
 ***THE PLAY***
 
-Each player flips a card at the same time and the player with the higher card takes both cards and puts them, face down, on the bottom of his stack.
-If the cards are the same rank, it is War!
+Each player flips a card from their respective decks at the same time. The player with the higher value card takes both flipped cards and puts them face down at the bottom of his deck.
+If the cards are of the same value... it is War!
 
 ***WAR***
 
-Each player turns up three cards face down and one card face up. The player with the higher cards takes both piles and the cards flipped. If the turned-up cards are again the same rank it is war again!
+In a "War" scenario each player is to draw 3 cards and place them in a face down pile next to the card that triggered the "War". A final card is drawn by each player flipped face up at the same time and placed next to their face down pile. The player with the higher value final card takes all dealt cards by both players that turn and puts them face down at the bottom of his deck.
+If the cards are of the same value it is "War" again!
 
 ***HOW TO KEEP SCORE***
 
